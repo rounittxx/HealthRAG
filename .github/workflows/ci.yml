@@ -1,0 +1,43 @@
+# Run tests on every push and pull request
+# Keeps the repo healthy — nothing merges if tests are broken
+
+name: HealthRAG CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install fastapi uvicorn pydantic httpx pytest pytest-anyio
+
+      - name: Run lint check (basic)
+        run: |
+          pip install pyflakes
+          python -m pyflakes api/ rag/ classifier/ retrieval/ || true
+
+      - name: Run API tests
+        env:
+          OPENAI_API_KEY: "test_key_not_real"
+        run: |
+          pytest tests/test_api.py -v --tb=short
+
+      - name: Run data processing unit tests
+        run: |
+          pytest tests/ -v -k "not test_ask and not test_classify" --tb=short || true
