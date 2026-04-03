@@ -15,7 +15,7 @@ CLASSIFIER_PATH = "models/symptom_classifier"
 CATEGORIES_PATH = "data/processed/classifier/categories.json"
 
 # played around with 256 and 1024, settled on 512
-CHUNK_SIZE = 512
+CHUNK_SIZE = 512  # words per chunk
 OVERLAP = 50
 
 TOP_K_RETRIEVAL = 5
