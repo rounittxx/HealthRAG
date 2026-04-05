@@ -34,3 +34,5 @@ class HealthResponse(BaseModel):
     status: str
     model_loaded: bool
     version: str = "1.0.0"
+
+# added version field so the health check can report which model is loaded
