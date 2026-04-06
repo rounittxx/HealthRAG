@@ -65,3 +65,5 @@ if __name__ == "__main__":
     specialist, reason = recommend_specialist(icd_results)
     print(f"\nRecommended specialist: {specialist}")
     print(f"Reason: {reason}")
+
+# TODO: add Ophthalmologist for eye-related conditions
