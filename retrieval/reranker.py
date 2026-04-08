@@ -54,3 +54,5 @@ if __name__ == "__main__":
     print("Reranked results:")
     for r in ranked:
         print(f"  Score {r['rerank_score']:.4f}: {r['text'][:80]}")
+
+# cross-encoder scores can be negative — normalise if needed downstream
