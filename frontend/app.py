@@ -113,7 +113,7 @@ def ask_api(query, history):
         return {"answer": f"⚠️ Error: {str(e)}", "sources": [], "confidence": 0.0, "icd_categories": [], "specialist": None}
 
 
-st.title("❤️ HealthRAG — Medical Q&A Assistant")
+st.title("HealthRAG — Medical Q&A Assistant")
 st.caption("Evidence-based answers from PubMed and NHS medical literature")
 
 for msg in st.session_state.messages:
