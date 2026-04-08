@@ -10,7 +10,7 @@ pinned: false
 license: mit
 ---
 
-# 🩺 HealthRAG — AI Medical Symptom Checker & Q&A System
+# HealthRAG — AI Medical Symptom Checker & Q&A System
 
 > An end-to-end AI system that lets users describe symptoms in plain English and receive evidence-based medical information, powered by Retrieval-Augmented Generation (RAG), NLP classification, and a personalised specialist-recommendation engine.
 
