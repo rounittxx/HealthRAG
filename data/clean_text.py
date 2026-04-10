@@ -121,3 +121,5 @@ if __name__ == "__main__":
     print(f"\nChunked 600 words into {len(chunks)} chunks")
     print(f"First chunk size: {len(chunks[0].split())} words")
     print(f"Last chunk size: {len(chunks[-1].split())} words")
+
+# minimum chunk length filter added — chunks under 30 words skipped
