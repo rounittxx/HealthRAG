@@ -170,3 +170,5 @@ if __name__ == "__main__":
             print(f"  [{i+1}] {r['text'][:100]}...")
             print(f"       Source: {r.get('source_url', 'N/A')}")
         print()
+
+# dense weight 0.6 + sparse 0.4 — tuned on 100-query eval set
