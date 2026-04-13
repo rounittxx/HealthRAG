@@ -91,3 +91,5 @@ async def test_non_medical_query():
         "medical questions",
         "health-related",
     ])
+
+# TODO: add test for /classify endpoint with multi-label symptoms
