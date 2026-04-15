@@ -112,3 +112,5 @@ if __name__ == "__main__":
         for cat, conf in results:
             print(f"  {cat}: {conf:.3f}")
         print()
+
+# sigmoid threshold 0.5 — lower to 0.4 to catch more borderline categories
