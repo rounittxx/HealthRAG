@@ -66,3 +66,5 @@ def call_llm(prompt):
         return call_ollama(prompt)
     else:
         return call_openai(prompt)
+
+# temperature 0.3 keeps answers factual — higher values increase hallucination risk
