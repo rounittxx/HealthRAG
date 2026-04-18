@@ -11,7 +11,13 @@ from retrieval.retrieval_engine import hybrid_search, load_resources
 from retrieval.reranker import rerank
 from classifier.inference import classify_symptoms
 from classifier.specialist_router import recommend_specialist
-from rag.prompt_templates import MEDICAL_QA_TEMPLATE, SAFETY_CHECK_TEMPLATE, LOW_CONFIDENCE_RESPONSE
+from rag.prompt_templates import (
+    MEDICAL_QA_TEMPLATE,
+    SAFETY_CHECK_TEMPLATE,
+    LOW_CONFIDENCE_RESPONSE,
+    NON_MEDICAL_RESPONSE,
+    CONTEXTUAL_QA_TEMPLATE,
+)
 from rag.llm_client import call_llm
 from config import CONFIDENCE_THRESHOLD, TOP_K_RETRIEVAL, MAX_CHAT_HISTORY
 
@@ -59,8 +65,7 @@ class RAGPipeline:
         # check if this is even a medical question
         if not self.is_medical_query(query):
             return {
-                "answer": "I only answer medical and health-related questions. "
-                          "Feel free to ask me about symptoms, conditions, medications, or treatments.",
+                "answer": NON_MEDICAL_RESPONSE,
                 "sources": [],
                 "confidence": 0.0,
                 "icd_categories": [],
@@ -97,22 +102,23 @@ class RAGPipeline:
 
         context = "\n\n".join(context_parts)
 
-        # build the full prompt with history context if available
-        history_text = ""
+        # build the full prompt — use contextual template when history is present
         history = chat_history if chat_history is not None else self.chat_history
         if history:
             history_text = "\n".join(
                 f"User: {q}\nAssistant: {a}"
                 for q, a in history[-MAX_CHAT_HISTORY:]
             )
-            query_with_context = f"Previous conversation:\n{history_text}\n\nCurrent question: {query}"
+            prompt = CONTEXTUAL_QA_TEMPLATE.format(
+                history=history_text,
+                context=context,
+                question=query,
+            )
         else:
-            query_with_context = query
-
-        prompt = MEDICAL_QA_TEMPLATE.format(
-            context=context,
-            question=query_with_context
-        )
+            prompt = MEDICAL_QA_TEMPLATE.format(
+                context=context,
+                question=query,
+            )
 
         # call the LLM
         try:
