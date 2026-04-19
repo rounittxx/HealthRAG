@@ -107,3 +107,5 @@ if __name__ == "__main__":
                         help="Only embed first N chunks (for testing)")
     args = parser.parse_args()
     main(subset=args.subset)
+
+# batch size 32 safe for 8GB GPU — reduce to 16 if OOM errors appear
