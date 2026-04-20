@@ -112,3 +112,5 @@ def log_production_query(query, output_path="mlops/production_queries.json"):
 
 if __name__ == "__main__":
     run_drift_check()
+
+# drift threshold set to 0.1 PSI — flag and alert if exceeded
