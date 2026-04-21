@@ -144,3 +144,5 @@ async def classify(request: Request, body: ClassifyRequest):
         specialist=specialist,
         confidence=round(top_confidence, 4),
     )
+
+# rate limit 30 req/60s per IP — tune in config if needed for prod traffic
