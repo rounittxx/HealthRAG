@@ -81,3 +81,5 @@ if __name__ == "__main__":
         print(f"\nTop results for: '{test_query}'")
         for r in results:
             print(f"  Score {r['bm25_score']:.3f}: {r['text'][:80]}...")
+
+# zero-score results filtered — avoids padding context with irrelevant chunks
