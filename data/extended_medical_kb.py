@@ -362,3 +362,5 @@ if __name__ == "__main__":
     print(f"{len(docs)} documents in extended knowledge base:")
     for d in docs:
         print(f"  [{d['category']}] {d['question']}")
+
+# last reviewed: April 2026 — sources: NHS, NIH, NICE guidelines
