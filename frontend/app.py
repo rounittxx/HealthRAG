@@ -20,10 +20,23 @@ st.markdown("""<style>
     background: #fff; border: 1px solid #dde3ec;
     border-radius: 10px; margin-bottom: 0.75rem;
 }
+/* fix: explicit dark text so buttons are readable on white background */
 .stButton button {
-    background: #fff; border: 1px solid #c8d4e3;
-    border-radius: 8px; font-size: 0.875rem; text-align: left;
+    background: #fff !important; color: #1a2744 !important;
+    border: 1px solid #c8d4e3 !important; border-radius: 8px !important;
+    font-size: 0.875rem; text-align: left;
 }
+.stButton button:hover {
+    background: #edf3fb !important; border-color: #2e86c1 !important;
+    color: #1a2744 !important;
+}
+/* fix: sidebar clear button stays white text */
+[data-testid="stSidebar"] .stButton button {
+    background: #2c3e6b !important; color: #fff !important;
+    border-color: #3d5280 !important;
+}
+h1, h2, h3 { color: #1a2744 !important; }
+p, li, .stMarkdown { color: #2c3e50; }
 footer, header, #MainMenu { visibility: hidden; }
 </style>""", unsafe_allow_html=True)
 
